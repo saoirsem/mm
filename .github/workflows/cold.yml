@@ -3,7 +3,7 @@ name: Curl Command Trigger
 
 on:
   schedule:
-    - cron: "*/30 * * * *"  # Every 30 minutes
+    - cron: "*/60 * * * *"  # Every 30 minutes
   workflow_dispatch:
 
 jobs:
@@ -15,30 +15,30 @@ jobs:
       
       - name: Run curl commands
         env:
-          URLFannkuchCPP: "https://fannkuch-cpp-815005680514.europe-north1.run.app"
-          URLFannkuchGO: "https://fannkuch-go-815005680514.europe-north1.run.app"
-          URLFannkuchRust: "https://rust-fannkuch-815005680514.europe-north1.run.app"
-          URLFactorialCpp: "https://factorial-cpp-815005680514.europe-north1.run.app"
-          URLFactorialGo: "https://factorial-go-815005680514.europe-north1.run.app"
-          URLFactorialRust: "https://factorial-rust-815005680514.europe-north1.run.app"
-          URLPrimeCpp: "https://prime-cpp-815005680514.europe-north1.run.app/?max=50000000"
-          URLPrimeGo: "https://prime-go-815005680514.europe-north1.run.app/?number=50000000"
-          URLPrimeRust: "https://prime-rust-815005680514.europe-north1.run.app/?number=50000000"
+          # URLFannkuchCPP: "https://fannkuch-cpp-815005680514.europe-north1.run.app"
+          # URLFannkuchGO: "https://fannkuch-go-815005680514.europe-north1.run.app"
+          # URLFannkuchRust: "https://rust-fannkuch-815005680514.europe-north1.run.app"
+          # URLFactorialCpp: "https://factorial-cpp-815005680514.europe-north1.run.app"
+          # URLFactorialGo: "https://factorial-go-815005680514.europe-north1.run.app"
+          # URLFactorialRust: "https://factorial-rust-815005680514.europe-north1.run.app"
+          URLPrimeCpp: "https://prime-cpp-815005680514.europe-north1.run.app/?max=100000000"
+          URLPrimeGo: "https://prime-go-815005680514.europe-north1.run.app/?number=100000000"
+          URLPrimeRust: "https://prime-rust-815005680514.europe-north1.run.app/?number=100000000"
         run: |
           urls=(
-            "$URLFannkuchCPP"
-            "$URLFannkuchGO"
-            "$URLFannkuchRust"
-            "$URLFactorialCpp"
-            "$URLFactorialGo"
-            "$URLFactorialRust"
+            # "$URLFannkuchCPP"
+            # "$URLFannkuchGO"
+            # "$URLFannkuchRust"
+            # "$URLFactorialCpp"
+            # "$URLFactorialGo"
+            # "$URLFactorialRust"
             "$URLPrimeCpp"
             "$URLPrimeGo"
             "$URLPrimeRust"
           )
-          for i in {1..1}; do
+          for i in {1..10}; do
             for url in "${urls[@]}"; do
               curl -s "$url" || echo "Error with $url" >> error.log
             done
-            # sleep 120
+            # sleep 240
           done
